@@ -1,0 +1,95 @@
+
+# Step 1: Pull Redis image
+docker pull redis
+
+# Step 2: Run Redis container
+docker run --name my-redis -d redis
+
+# Step 3: Check running containers
+docker ps
+
+# Step 4: Enter Redis CLI
+docker exec -it my-redis redis-cli
+
+# Inside Redis CLI:
+# SET name "Alice"
+# GET name
+# exit
+
+# Step 5: Stop container
+docker stop my-redis
+
+# Step 6: Start container
+docker start my-redis
+
+# Step 7: Stop and remove container
+docker stop my-redis
+docker rm my-redis
+
+# Step 8: Remove Redis image
+docker rmi redis
+
+# Extra inspection commands
+docker ps -a
+docker images
+docker inspect my-redis
+docker logs my-redis
+
+# Extra network commands
+docker network ls
+docker network create my-network
+docker network inspect my-network
+
+# Extra volume commands
+docker volume ls
+docker volume create my-volume
+docker volume inspect my-volume
+................................................
+# 1. Build the Redis image from Dockerfile
+docker build -t redisnew .
+
+# 2. Run a container from redisnew image
+docker run --name myredisnew -d redisnew
+
+# 3. Check running containers
+docker ps
+
+# 4. Stop the container
+docker stop myredisnew
+
+# 5. Login to Docker Hub
+docker login
+
+# 6. Show all containers
+docker ps -a
+
+# 7. Commit container as a new image
+docker commit YOUR_CONTAINER_ID YOUR_USERNAME/redis1
+
+# 8. List all images
+docker images
+
+# 9. Push image to Docker Hub
+docker push YOUR_USERNAME/redis1
+
+# 10. Remove the container
+docker rm YOUR_CONTAINER_ID
+
+# 11. Remove the image
+docker rmi YOUR_USERNAME/redis1
+
+# 12. Check all containers
+docker ps -a
+
+# 13. Logout from Docker Hub
+docker logout
+
+# 14. Pull your image from Docker Hub
+docker pull YOUR_USERNAME/redis1
+
+# 15. Run a container from the pulled image
+docker run --name myredis -d YOUR_USERNAME/redis1
+
+# 16. Enter Redis CLI
+docker exec -it myredis redis-cli
+.................................................

@@ -1,0 +1,19 @@
+Whenever I give you a project heading and UML diagram type, directly generate a downloadable **StarUML (.mdj) project file**.
+
+Requirements:
+1. Create actual, editable StarUML UML elements, NOT an image.
+2. Use proper UML notation and relationships.
+3. Include all necessary actors, use cases, classes, attributes, methods, associations, arrows, multiplicities, and system boundaries as applicable.
+4. Arrange the diagram neatly with proper spacing and alignment.
+5. Use meaningful names and correct UML relationships.
+6. Make the file openable in StarUML.
+7. Do not give me PlantUML code, Mermaid code, or just an image.
+8. Provide the downloadable `.mdj` file directly.
+9. Check the project structure before providing it and clearly mention if it has not been tested in StarUML.
+
+My input will be in this format:
+
+**Project Heading:** Library Management System  
+**UML Type:** Use Case Diagram
+
+Generate the downloadable project file directly without unnecessary questions.
