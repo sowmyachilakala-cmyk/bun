@@ -1,0 +1,260 @@
+
+# Git Branching, Merging and GitHub Commands
+
+## 1. Check Git Version
+
+```bash
+git --version
+```
+
+## 2. Configure Git
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+```
+
+Check configuration:
+
+```bash
+git config --list
+```
+
+## 3. Initialize a Git Repository
+
+```bash
+mkdir git-branch-practice
+cd git-branch-practice
+git init
+```
+
+## 4. Check Repository Status
+
+```bash
+git status
+```
+
+## 5. Add Files and Commit
+
+```bash
+git add index.html
+git commit -m "Initial commit"
+```
+
+Add all files:
+
+```bash
+git add .
+```
+
+## 6. Rename Branch to Main
+
+```bash
+git branch -M main
+```
+
+## 7. List Branches
+
+```bash
+git branch
+```
+
+## 8. Create a New Branch
+
+```bash
+git branch feature/about
+```
+
+## 9. Switch to a Branch
+
+```bash
+git checkout feature/about
+```
+
+## 10. Create and Switch to a Branch
+
+```bash
+git checkout -b feature/contact
+```
+
+## 11. Commit Changes in Feature Branch
+
+```bash
+git status
+git add .
+git commit -m "Add about section"
+```
+
+## 12. Switch to Main Branch
+
+```bash
+git checkout main
+```
+
+## 13. Merge a Feature Branch
+
+```bash
+git merge feature/about
+```
+
+## 14. View Commit History
+
+```bash
+git log
+```
+
+## 15. View Short Commit History
+
+```bash
+git log --oneline
+```
+
+## 16. View Branches with Commit Graph
+
+```bash
+git log --oneline --graph --all
+```
+
+## 17. List Merged Branches
+
+```bash
+git branch --merged
+```
+
+## 18. Delete a Merged Branch
+
+```bash
+git branch -d feature/about
+```
+
+## 19. Create a GitHub Remote Repository
+
+Create a repository on GitHub, then connect it:
+
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/git-branch-practice.git
+```
+
+Replace YOUR_USERNAME with your GitHub username.
+
+## 20. View Remote Repositories
+
+```bash
+git remote -v
+```
+
+## 21. Push Main Branch to GitHub
+
+```bash
+git push -u origin main
+```
+
+## 22. Push Feature Branch to GitHub
+
+```bash
+git push -u origin feature/about
+```
+
+## 23. List Local and Remote Branches
+
+```bash
+git branch -a
+```
+
+## 24. Fetch Changes from GitHub
+
+```bash
+git fetch origin
+```
+
+## 25. Pull Changes from GitHub
+
+```bash
+git pull origin main
+```
+
+## 26. Push New Changes
+
+```bash
+git add .
+git commit -m "Update project"
+git push origin main
+```
+
+## 27. Clone a Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/git-branch-practice.git
+```
+
+## 28. Remove a Remote Repository
+
+```bash
+git remote remove origin
+```
+
+## 29. Rename a Remote
+
+```bash
+git remote rename origin github
+```
+
+## 30. Show Remote Repository Information
+
+```bash
+git remote show origin
+```
+
+## 31. Compare Working Changes
+
+```bash
+git diff
+```
+
+## 32. Show Details of a Commit
+
+```bash
+git show
+```
+
+## 33. Undo Changes in Working Directory
+
+```bash
+git restore index.html
+```
+
+## 34. Unstage a File
+
+```bash
+git restore --staged index.html
+```
+
+## 35. Revert a Commit
+
+```bash
+git revert HEAD
+```
+
+## 36. Stash Changes
+
+```bash
+git stash
+```
+
+## 37. Apply Stashed Changes
+
+```bash
+git stash apply
+```
+
+## 38. View Stash List
+
+```bash
+git stash list
+```
+
+## 39. Delete a Remote-Tracking Branch Reference
+
+```bash
+git remote prune origin
+```
