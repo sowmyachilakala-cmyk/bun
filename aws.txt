@@ -1,0 +1,62 @@
+
+# 1. Update Ubuntu
+sudo apt update
+
+# 2. Install Docker and Git
+sudo apt install docker.io git -y
+
+# 3. Start and enable Docker
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# 4. Clone your GitHub project
+git clone https://github.com/sowmyachilakala-cmyk/mavenweb.git
+
+# 5. Enter project folder
+cd mavenweb
+
+# 6. Create Dockerfile
+nano Dockerfile
+
+# Paste your Dockerfile, then save:
+# Ctrl + O -> Enter -> Ctrl + X
+
+# 7. Build Docker image
+sudo docker build -t maven-web-app .
+
+# 8. Check Docker images
+sudo docker images
+
+# 9. Run the application on port 8082
+sudo docker run -d -p 8082:8080 --name maven-web maven-web-app
+
+# 10. Check running containers
+sudo docker ps
+
+# 11. Check container logs if needed
+sudo docker logs maven-web
+
+# 12. Stop the container if needed
+sudo docker stop maven-web
+
+# 13. Start the container again if needed
+sudo docker start maven-web
+
+
+# Stage 1: Build Maven web application
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn clean package -DskipTests
+
+# Stage 2: Run using Tomcat
+FROM tomcat:9.0-jdk17-temurin
+
+COPY --from=build /app/target/maven_web_java.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8082
+
+CMD ["catalina.sh", "run"]
