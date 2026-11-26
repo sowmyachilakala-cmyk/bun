@@ -1,0 +1,168 @@
+REM =====================================================
+REM EXPERIMENT 10: WORKING WITH MINIKUBE AND NAGIOS
+REM TASK 1: CREATE, RUN AND SCALE PODS IN MINIKUBE
+REM TASK 2: RUN NGINX SERVER ON SPECIFIED PORT
+REM TASK 3: RUN NAGIOS SERVER USING DOCKER
+REM =====================================================
+
+
+REM ================= TASK 1 =============================
+REM Start Minikube using Docker driver
+
+minikube start --driver=docker
+
+REM Check Minikube status
+
+minikube status
+
+REM Check Kubernetes nodes
+
+kubectl get nodes
+
+REM Create Nginx deployment
+
+kubectl create deployment mynginx --image=nginx
+
+REM If deployment already exists, update its image
+
+kubectl set image deployment/mynginx nginx=nginx:latest
+
+REM Check deployments
+
+kubectl get deployments
+
+REM Check Pods
+
+kubectl get pods
+
+REM Describe Pods
+
+kubectl describe pods
+
+REM Scale Nginx deployment to 4 replicas
+
+kubectl scale deployment mynginx --replicas=4
+
+REM Verify deployment replicas
+
+kubectl get deployments
+
+REM Verify 4 Pods are running
+
+kubectl get pods
+
+
+REM ================= TASK 2 =============================
+REM Expose Nginx deployment as a NodePort service
+
+kubectl expose deployment mynginx --type=NodePort --port=80 --target-port=80
+
+REM Check services
+
+kubectl get services
+
+REM Forward local port 8081 to Nginx port 80
+REM Keep this command running in its own terminal
+
+kubectl port-forward svc/mynginx 8081:80
+
+REM Open browser and visit:
+REM http://localhost:8081
+REM Expected output: Welcome to nginx!
+
+
+REM Open a NEW Command Prompt window for the following:
+
+REM Check Pods
+
+kubectl get pods
+
+REM Check services
+
+kubectl get services
+
+REM Check Nginx logs
+
+kubectl logs deployment/mynginx
+
+REM Open Kubernetes dashboard (optional)
+
+minikube dashboard
+
+
+REM ================= TASK 3 =============================
+REM Pull Nagios Docker image
+
+docker pull jasonrivers/nagios:latest
+
+REM Run Nagios container and map host port 8888 to container port 80
+
+docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+
+REM Keep this terminal running
+REM Open browser and visit:
+REM http://localhost:8888
+REM Username: nagiosadmin
+REM Password: nagios
+
+
+REM Open a NEW Command Prompt window:
+
+REM Check running Docker containers
+
+docker ps
+
+REM View Nagios logs
+
+docker logs nagiosdemo
+
+REM View Nagios logs continuously
+
+docker logs -f nagiosdemo
+
+REM Press CTRL+C to stop viewing logs
+
+
+REM Stop Nagios container
+
+docker stop nagiosdemo
+
+REM Start Nagios container again
+
+docker start nagiosdemo
+
+REM Stop Nagios before removing it
+
+docker stop nagiosdemo
+
+REM Remove Nagios container
+
+docker rm nagiosdemo
+
+REM List Docker images
+
+docker images
+
+REM Remove Nagios image (optional)
+
+docker rmi jasonrivers/nagios:latest
+
+
+REM ================= CLEANUP ============================
+REM Delete Nginx deployment and service after completing
+REM the experiment, if you no longer need them
+
+kubectl delete deployment mynginx
+
+kubectl delete service mynginx
+
+REM Stop Minikube (optional)
+
+minikube stop
+
+REM Delete Minikube cluster (optional; not required for
+REM normal cleanup)
+
+minikube delete
+
+REM ================= EXPERIMENT 10 COMPLETED ============
